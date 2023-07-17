@@ -20,7 +20,10 @@ int main() {
 
 	int ans = f(0, 0);
 
-	printf("%d", ans);
+	// for (int i = 0; i <= m; i++){
+	// 	printf("%d : %d\n", i, dp[i]);
+	// }
+	printf("%d\n", ans);
 }
 
 void input() {
@@ -37,16 +40,20 @@ void input() {
 int f(int v, int now) {
 	v |= (1 << now);
 
-	if (v == m) {
-		return 0;
+	for (int i = n - 1; i >= 0; --i){
+		printf("%d", v >> i & 1);
 	}
+	
+	printf("  %d\n", now);
+
+	if (v == m) return ;
 
 	int& r = dp[v][now];
-	if (r > 0) return r;
+	if (r != 0) return r;
 
 	r = MAX;
 	for (int i = 0; i < n; i++) {
-		if ((v & (1 << i)) == 0) {
+		if ((i != now) && (v & (1 << i)) == 0) {
 			int t = f(v, i) + c[now][i];
 			if (t < r) r = t;
 		}
