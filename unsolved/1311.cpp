@@ -1,3 +1,5 @@
+//미해결 
+//DP 골드 1 할 일 정하기 1 https://www.acmicpc.net/problem/1311
 #include <iostream>
 #include <vector>
 #include <math.h>

@@ -1,3 +1,4 @@
+//수학 브론즈 3 중앙 이동 알고리즘 https://www.acmicpc.net/problem/2903
 #include <iostream>
 #include <vector>
 #include <math.h>

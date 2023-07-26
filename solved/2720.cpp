@@ -1,3 +1,4 @@
+//수학 브론즈 3 세탁소 사장 동혁 https://www.acmicpc.net/problem/2720
 #include <iostream>
 #include <vector>
 #include <math.h>

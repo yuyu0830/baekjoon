@@ -1,3 +1,4 @@
+//수학 브론즈 2 진법 변환 https://www.acmicpc.net/problem/2745
 #include <iostream>
 #include <vector>
 #include <math.h>
