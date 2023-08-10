@@ -13,7 +13,6 @@ using namespace std;
 int n, m;
 int dp[NUM] = { 0, };
 vector<int> v[9];
-bool flag = false;
 
 int c(int a, int b, int type) {
 	int ret;
