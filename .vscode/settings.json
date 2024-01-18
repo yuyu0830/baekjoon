@@ -3,6 +3,9 @@
         "xiosbase": "cpp",
         "iostream": "cpp",
         "algorithm": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "utility": "cpp",
+        "vector": "cpp",
+        "queue": "cpp"
     }
 }
