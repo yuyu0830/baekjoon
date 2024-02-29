@@ -1,4 +1,4 @@
-// BFS 골드 1 구슬 탈출 2 https://www.acmicpc.net/problem/13460
+// BFS 골드 1 구슬 탈출 3 https://www.acmicpc.net/problem/13644
 #include <iostream>
 #include <string>
 #include <queue>
@@ -11,6 +11,8 @@ int dir[4][2] = {
     {1, 0},
     {0, -1}
 };
+
+char dStr[4] = {'U', 'R', 'D', 'L'};
 
 class pos{
     public:
@@ -30,13 +32,16 @@ class node {
     public:
     pos r, b;
     int cnt;
+    string s;
 
-    void input(pos R, pos B, int _cnt) {
+    void input(pos R, pos B, int _cnt, string _s) {
         b.x = B.x;
         b.y = B.y;
         r.x = R.x;
         r.y = R.y;
         cnt = _cnt;
+
+        s = _s;
     }
 
 };
@@ -50,9 +55,9 @@ bool isin(int x, int y) {
     return 0;
 }
 
-int f() {
+node f() {
     queue<node> q;
-    node tmp; tmp.input(r, b, 0);
+    node tmp; tmp.input(r, b, 0, "");
 
     q.push(tmp);
 
@@ -63,12 +68,14 @@ int f() {
         pos tr = tmp.r;
         pos tb = tmp.b;
         int tc = tmp.cnt;
+        string ts = tmp.s;
 
         int o[4] = {tr.y, tb.x, tb.y, tr.x};
         int p[4] = {tb.y, tr.x, tr.y, tb.x};
 
         for (int i = 0; i < 4; i++) {
-            node t; t.input(tr, tb, tc + 1);
+            string tmps = ts; tmps.push_back(dStr[i]);
+            node t; t.input(tr, tb, tc + 1, tmps);
 
             bool e = false;
             bool r = false;
@@ -113,14 +120,17 @@ int f() {
                 }
             }
             
-            if (r && !e) return t.cnt;
+            if (r && !e) return t;
 
             if ((tr == t.r && tb == t.b) || e || t.cnt == 10) continue;
             q.push(t);
         }
     }
 
-    return -1;
+    tmp.cnt = -1;
+    tmp.s = "";
+
+    return tmp;
 }
 
 int main() {
@@ -141,5 +151,7 @@ int main() {
         }
     }
 
-    printf("%d\n", f());
+    node ans = f();
+
+    printf("%d\n%s\n", ans.cnt, ans.s.c_str());
 }

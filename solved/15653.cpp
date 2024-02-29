@@ -1,4 +1,4 @@
-// BFS 골드 1 구슬 탈출 2 https://www.acmicpc.net/problem/13460
+// BFS 골드 1 구슬 탈출 4 https://www.acmicpc.net/problem/13653
 #include <iostream>
 #include <string>
 #include <queue>
@@ -44,6 +44,7 @@ class node {
 int n, m; 
 bool map[11][11] = {0, };
 pos zero, b, r;
+bool visited[11][11][11][11] = {0, };
 
 bool isin(int x, int y) {
     if (x >= 0 && x < n && y >= 0 && y < m) return 1;
@@ -53,6 +54,7 @@ bool isin(int x, int y) {
 int f() {
     queue<node> q;
     node tmp; tmp.input(r, b, 0);
+    visited[r.y][r.x][b.y][b.x] = true;
 
     q.push(tmp);
 
@@ -115,7 +117,8 @@ int f() {
             
             if (r && !e) return t.cnt;
 
-            if ((tr == t.r && tb == t.b) || e || t.cnt == 10) continue;
+            if ((tr == t.r && tb == t.b) || e || visited[t.r.y][t.r.x][t.b.y][t.b.x]) continue;
+            visited[t.r.y][t.r.x][t.b.y][t.b.x] = true;
             q.push(t);
         }
     }

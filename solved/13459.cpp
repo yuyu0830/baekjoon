@@ -1,4 +1,4 @@
-// BFS 골드 1 구슬 탈출 2 https://www.acmicpc.net/problem/13460
+// BFS 골드 1 구슬 탈출 1 https://www.acmicpc.net/problem/13459
 #include <iostream>
 #include <string>
 #include <queue>
@@ -141,5 +141,8 @@ int main() {
         }
     }
 
-    printf("%d\n", f());
+    int k = f();
+
+    if (k > 0) printf("1\n");
+    else printf("0\n");
 }
