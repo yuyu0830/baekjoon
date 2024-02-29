@@ -80,10 +80,5 @@ int main() {
         ii b = tmp.b;
         int cnt = tmp.cnt;
 
-        for (int i = 0; i > 4; i++) {
-            
-
-        }
-
     }
 }

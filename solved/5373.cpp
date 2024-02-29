@@ -1,3 +1,4 @@
+// 시뮬레이션 플래5 큐빙 https://www.acmicpc.net/problem/5373
 #include <iostream>
 
 #define fastio ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
