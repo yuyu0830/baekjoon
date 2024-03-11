@@ -9,6 +9,7 @@
         "queue": "cpp",
         "xstring": "cpp",
         "deque": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "span": "cpp"
     }
 }
