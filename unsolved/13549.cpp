@@ -3,41 +3,59 @@
 #include <vector>
 #include <queue>
 
+#define M(x, y) make_pair(x, y)
+#define MAX 99999999
+
 using namespace std;
 
 typedef pair<int, int> ii;
 
 int n, k;
-
-bool min(int a, int b) { return a < b ? a : b; }
+bool visited[100001] = {0, };
+int arr[100001] = {0, };
 
 struct cmp{
-    bool operator()(ii a, ii b) { 
-        return min(k - a.first, k - (a.first * 2)) < min(k - b.first, k - (b.first * 2)); 
+    bool operator()(int a, int b) {
+        return arr[a] > arr[b];
     }
 };
 
 int solve() {
-    priority_queue<ii, vector<ii>, cmp> q;
+    for (int i = 0; i < 100001; i++) 
+        arr[i] = MAX;
 
-    q.push(make_pair(0, 0));
+    priority_queue<int, vector<int>, cmp> q;
+    q.push(n);
+    visited[n] = 1;
+    arr[n] = 0;
 
     while (!q.empty()) {
-        ii cur = q.top();
+        int cur = q.top();
+        if (cur < 3) printf("%6d : %2d, %d\n", cur, arr[cur], q.size());
         q.pop();
-        
-        if (cur.first > k) {
-            q.push(make_pair(0, cur.second + (k - cur.first)));
-            continue;
-        }
 
-        for (ii i : {-1, 1, cur.first * 2}) {
-            if (cur.first + i == k)
+        if (cur == k) 
+            return arr[cur];
+
+        for (ii i : {M(cur, 0), M(-1, 1), M(1, 1)}) {
+            int fir = cur + i.first;
+            int sec = arr[cur] + i.second;
+
+            if (fir < 0 || fir > 10000) continue;
+
+            if (!visited[fir]) {
+                visited[fir] = 1;
+                q.push(fir);
+            }
+
+            arr[fir] = min(arr[fir], sec);
         }
     }
+
+    return 0;
 }
 
 int main() {
     cin >> n >> k;
-    solve();
+    printf("%d\n", solve());
 }
